@@ -1,4 +1,4 @@
-baseURL: "https://www.12f.dk"
+baseURL: "https://12f.dk"
 languageCode: "en-us"
 title: "12F.dk"
 theme: hugo-profile

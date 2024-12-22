@@ -1,7 +1,7 @@
 ---
 title: "Sonic Snap Privacy Policy"
 date: 2024-12-21T11:56:57+01:00
-draft: true
+draft: false
 ---
 Last Updated: See top of page.
 

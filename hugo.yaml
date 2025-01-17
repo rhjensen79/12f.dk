@@ -144,7 +144,7 @@ params:
         - icon: fab fa-x-twitter
           url: https://twitter.com/rhjensen
         - icon: fab fa-linkedin
-          url: https://www.linkedin.com/in/robertjensen/
+          url: https://www.linkedin.com/company/12f
         - icon: fa fa-envelope
           url: mailto:robert@12f.dk
       #customIcons:

@@ -61,5 +61,4 @@ If you have any questions about this Privacy Policy, please contact us at:
 Your Rights
 -----------
 
-If you wish your data to be deleted, just send us an email, and we will do so.
-future versions, of the app, will allow you to delete all data by ourself.
+To delete data, there is a "Delete Profile" option in the profile page, that removes all collected data. 

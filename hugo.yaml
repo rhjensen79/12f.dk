@@ -124,9 +124,9 @@ params:
   hero:
     enable: true
     intro: "Welcome to"
-    title: "12F"
+    title: "12F ApS"
     subtitle: "We help you modernize your business, app by app."
-    content: "CVR: 29871264"
+    content: "CVR: 45362957"
     #image: /images/hero.gif
     bottomImage:
       enable: false

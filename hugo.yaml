@@ -159,7 +159,7 @@ params:
     intro: "Welcome to"
     title: "12F ApS"
     subtitle: "Modernizing Businesses & Applications Through Consulting"
-    content: "We help Danish businesses modernize through digital transformation and privacy compliance solutions. CVR: 45362957"
+    content: "We help Danish businesses modernize through digital transformation. CVR: 45362957"
     #image: /images/hero.gif
     bottomImage:
       enable: false

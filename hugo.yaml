@@ -15,6 +15,12 @@ outputs:
 pagination:
   pagerSize: 3
 enableRobotsTXT: true
+
+# SEO Configuration
+sitemap:
+  changefreq: "monthly"
+  priority: 0.8
+  filename: "sitemap.xml"
 # disqusShortname: your-disqus-shortname
 # googleAnalytics: G-MEASUREMENT_ID
 
@@ -27,12 +33,12 @@ author:
 # Additional SEO parameters
 keywords:
   - "business modernization Denmark"
-  - "digital transformation"
-  - "privacy policy creation"
-  - "business consulting"
+  - "digital transformation consulting"
+  - "business consulting Denmark"
   - "digital solutions"
+  - "modernization services"
   - "12F ApS"
-  - "Danish business consulting"
+  - "Danish business modernization"
 
 # Organization info for structured data
 organization:
@@ -87,7 +93,7 @@ markup:
 
 params:
   title: "12F ApS - Digital Business Solutions"
-  description: "12F ApS provides digital business solutions and consulting services in Denmark. We help companies with privacy policy creation and digital transformation. CVR: 45362957"
+  description: "12F ApS helps Danish businesses modernize through digital transformation consulting. Expert business modernization services in Denmark. CVR: 45362957"
   # staticPath: ""  # The path to serve the static files from
   favicon: "/favicon.gif"
 

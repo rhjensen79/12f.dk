@@ -159,7 +159,7 @@ params:
     intro: "Welcome to"
     title: "12F ApS"
     subtitle: "We help you modernize your business, app by app."
-    content: "We help Danish businesses modernize through digital transformation. CVR: 45362957"
+    content: "CVR: 45362957"
     #image: /images/hero.gif
     bottomImage:
       enable: false

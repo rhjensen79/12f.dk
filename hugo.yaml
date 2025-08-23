@@ -28,7 +28,6 @@ sitemap:
 author:
   name: "Robert Jensen"
   email: "robert@12f.dk"
-  twitter: "@rhjensen"
 
 # Additional SEO parameters
 keywords:
@@ -53,7 +52,6 @@ organization:
   address:
     addressCountry: "DK"
   sameAs:
-    - "https://twitter.com/rhjensen"
     - "https://www.linkedin.com/company/12f"
 
 markup:
@@ -180,8 +178,6 @@ params:
       fontAwesomeIcons:
         #- icon: fab fa-github
         #  url: https://example.com
-        - icon: fab fa-x-twitter
-          url: https://twitter.com/rhjensen
         - icon: fab fa-linkedin
           url: https://www.linkedin.com/company/12f
         - icon: fa fa-envelope

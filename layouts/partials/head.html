@@ -14,6 +14,10 @@
 <meta name="language" content="{{ .Site.LanguageCode }}">
 <meta name="theme-color" content="#18191a">
 
+<!-- Image preloading for above-the-fold content -->
+<link rel="preload" as="image" href="/images/12F-new.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/favicon.gif" type="image/gif">
+
 <!-- Business Schema.org structured data -->
 <script type="application/ld+json">
 {
@@ -57,6 +61,25 @@
           rel="stylesheet">
 </noscript>
 
+<!-- Font fallback optimization -->
+<style>
+  @font-face {
+    font-family: 'Roboto';
+    font-display: swap;
+    src: local('Roboto');
+  }
+  @font-face {
+    font-family: 'Lora';
+    font-display: swap;
+    src: local('Lora');
+  }
+  @font-face {
+    font-family: 'Alata';
+    font-display: swap;
+    src: local('Alata');
+  }
+</style>
+
 <!-- font configuration -->
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/font.css" media="all">
 
@@ -74,8 +97,6 @@
 
 <!-- Enhanced Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="{{ .Site.Params.author.twitter }}">
-<meta name="twitter:creator" content="{{ .Site.Params.author.twitter }}">
 <meta name="twitter:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 {{ if .Site.Params.organization.logo }}<meta name="twitter:image" content="{{ .Site.Params.organization.logo }}">{{ end }}

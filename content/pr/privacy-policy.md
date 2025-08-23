@@ -1,7 +1,13 @@
 ---
-title: "PR Privacy Policy"
+title: "PR App Privacy Policy - 12F ApS"
+description: "Privacy policy for PR iOS fitness app by 12F ApS. Learn how we handle user data, Apple ID, and personal information in our CrossFit tracking application."
 date: 2025-01-15T11:56:57+01:00
 draft: false
+keywords:
+  - "PR app privacy policy"
+  - "iOS fitness app privacy"
+  - "CrossFit app data handling"
+  - "12F ApS privacy"
 ---
 Last Updated: See top of page.
 

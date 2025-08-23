@@ -1,7 +1,14 @@
 ---
-title: "Sonic Snap Privacy Policy"
+title: "Sonic Snap App Privacy Policy - 12F ApS"
+description: "Privacy policy for Sonic Snap iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection, complete offline functionality, and local storage only."
 date: 2024-12-21T11:56:57+01:00
 draft: false
+keywords:
+  - "Sonic Snap privacy policy"
+  - "iOS app no data collection"
+  - "privacy-focused app"
+  - "offline iOS app"
+  - "12F ApS privacy"
 ---
 Last Updated: See top of page.
 

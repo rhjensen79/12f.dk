@@ -12,10 +12,43 @@ outputs:
     - "HTML"
     - "RSS"
 
-Paginate: 3
+pagination:
+  pagerSize: 3
 enableRobotsTXT: true
 # disqusShortname: your-disqus-shortname
 # googleAnalytics: G-MEASUREMENT_ID
+
+# SEO and Social Media
+author:
+  name: "Robert Jensen"
+  email: "robert@12f.dk"
+  twitter: "@rhjensen"
+
+# Additional SEO parameters
+keywords:
+  - "business modernization Denmark"
+  - "digital transformation"
+  - "privacy policy creation"
+  - "business consulting"
+  - "digital solutions"
+  - "12F ApS"
+  - "Danish business consulting"
+
+# Organization info for structured data
+organization:
+  name: "12F ApS"
+  legalName: "12F ApS"
+  url: "https://12f.dk"
+  logo: "https://12f.dk/images/12F-new.svg"
+  contactPoint:
+    telephone: ""
+    contactType: "customer service"
+    email: "robert@12f.dk"
+  address:
+    addressCountry: "DK"
+  sameAs:
+    - "https://twitter.com/rhjensen"
+    - "https://www.linkedin.com/company/12f"
 
 markup:
   goldmark:
@@ -53,8 +86,8 @@ markup:
     #   weight: 2
 
 params:
-  title: "12F.dk"
-  description: Modernize your business
+  title: "12F ApS - Digital Business Solutions"
+  description: "12F ApS provides digital business solutions and consulting services in Denmark. We help companies with privacy policy creation and digital transformation. CVR: 45362957"
   # staticPath: ""  # The path to serve the static files from
   favicon: "/favicon.gif"
 
@@ -125,8 +158,8 @@ params:
     enable: true
     intro: "Welcome to"
     title: "12F ApS"
-    subtitle: "We help you modernize your business, app by app."
-    content: "CVR: 45362957"
+    subtitle: "Digital Business Solutions & Consulting Services"
+    content: "We help Danish businesses modernize through digital transformation and privacy compliance solutions. CVR: 45362957"
     #image: /images/hero.gif
     bottomImage:
       enable: false

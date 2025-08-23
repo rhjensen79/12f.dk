@@ -1,11 +1,18 @@
 ---
-title: "Wrnty Privacy Policy"
+title: "Wrnty App Privacy Policy - 12F ApS"
+description: "Privacy policy for Wrnty warranty tracking iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection and complete offline functionality."
 date: 2025-06-25T11:56:57+01:00
 draft: false
+keywords:
+  - "Wrnty privacy policy"
+  - "warranty tracking app privacy"
+  - "iOS app no data collection"
+  - "privacy-focused app"
+  - "12F ApS privacy"
 ---
 Last Updated: See top of page.
 
-This privacy policy describes how Sonic Snap handles information when you use our iOS application.
+This privacy policy describes how Wrnty handles information when you use our iOS application.
 
 Information Collection and Use
 ------------------------------

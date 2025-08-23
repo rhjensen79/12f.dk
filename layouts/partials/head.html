@@ -6,6 +6,41 @@
 <script defer src="https://umami.robert-jensen.dk/script.js" data-website-id="9695b215-f70e-414e-b8a4-38fdbe4fb4ac"></script>
 <link rel="canonical" href="{{ .Permalink }}" />
 
+<!-- Enhanced SEO Meta Tags -->
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ if .Site.Params.keywords }}<meta name="keywords" content="{{ delimit .Site.Params.keywords ", " }}">{{ end }}
+<meta name="author" content="{{ .Site.Params.author.name }}">
+<meta name="robots" content="index, follow">
+<meta name="language" content="{{ .Site.LanguageCode }}">
+<meta name="theme-color" content="#18191a">
+
+<!-- Business Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ .Site.Params.organization.name }}",
+  "legalName": "{{ .Site.Params.organization.legalName }}",
+  "url": "{{ .Site.Params.organization.url }}",
+  "logo": "{{ .Site.Params.organization.logo }}",
+  "description": "{{ .Site.Params.description }}",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "{{ .Site.Params.organization.contactPoint.email }}",
+    "contactType": "{{ .Site.Params.organization.contactPoint.contactType }}"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "{{ .Site.Params.organization.address.addressCountry }}"
+  },
+  "sameAs": [
+    {{- range $index, $url := .Site.Params.organization.sameAs -}}
+    {{- if $index }}, {{ end }}"{{ $url }}"
+    {{- end -}}
+  ]
+}
+</script>
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +62,23 @@
 
 <!-- Internal templates -->
 {{ template "_internal/google_analytics.html" . }}
-{{ template "_internal/opengraph.html" . }}
-{{ template "_internal/twitter_cards.html" . }}
+
+<!-- Enhanced Open Graph -->
+<meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}">
+{{ if .Site.Params.organization.logo }}<meta property="og:image" content="{{ .Site.Params.organization.logo }}">{{ end }}
+
+<!-- Enhanced Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ .Site.Params.author.twitter }}">
+<meta name="twitter:creator" content="{{ .Site.Params.author.twitter }}">
+<meta name="twitter:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ if .Site.Params.organization.logo }}<meta name="twitter:image" content="{{ .Site.Params.organization.logo }}">{{ end }}
 
 <!-- stylesheets -->
 {{- if (or (eq .Site.Params.UseBootstrapCDN true) (eq .Site.Params.UseBootstrapCDN "css")) -}}

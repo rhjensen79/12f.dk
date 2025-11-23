@@ -27,12 +27,36 @@ All data and content created within the application is stored locally on your de
 Third-Party Services
 --------------------
 
-Our application does not integrate with any third-party services, analytics tools, or advertising networks. We do not share any information with third parties because we do not collect any information to share.
+We use TelemetryDeck (<https://telemetrydeck.com>) for analytics.
+View their privacy policy: <https://telemetrydeck.com/privacy/>
 
-Analytics and Tracking
-----------------------
+All data is anonymized, aggregated, and used solely to improve Home Stories.
 
-We do not use any analytics tools or tracking mechanisms. We do not monitor user behavior, usage patterns, or any other metrics related to app usage.
+Analytics
+---------
+
+We collect anonymous usage data to understand how users interact with Home Stories and to improve the app experience. This data is collected using TelemetryDeck, a privacy-focused analytics service.
+
+**What we collect:**
+
+- Feature usage patterns (which features you use)
+- App performance metrics
+- Device information (iPhone/iPad, iOS version)
+- Aggregated usage statistics
+
+**What we DO NOT collect:**
+
+- Your name, email, or personal information
+- Project names, task details, or any content you create
+- Location data
+- Device identifiers (IDFA, IDFV)
+- IP addresses
+
+**Opting Out:**
+
+You can disable analytics at any time in the app:
+Settings → Privacy → Analytics → Toggle OFF
+
 
 Children's Privacy
 ------------------

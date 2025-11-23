@@ -17,7 +17,7 @@ This privacy policy describes how Wrnty handles information when you use our iOS
 Information Collection and Use
 ------------------------------
 
-We are committed to protecting your privacy. Our application does not collect, store, or transmit any personal information about you or your device. We have specifically designed our app to operate completely offline and locally on your device.
+We are committed to protecting your privacy. Our application does not collect, store, or transmit any personal information about you or your device. We collect only anonymous, aggregated analytics data to improve the app experience. All warranty data and content you create is stored locally on your device only.
 
 Data Storage
 ------------
@@ -27,12 +27,35 @@ All data and content created within the application is stored locally on your de
 Third-Party Services
 --------------------
 
-Our application does not integrate with any third-party services, analytics tools, or advertising networks. We do not share any information with third parties because we do not collect any information to share.
+We use TelemetryDeck (<https://telemetrydeck.com>) for analytics.
+View their privacy policy: <https://telemetrydeck.com/privacy/>
 
-Analytics and Tracking
-----------------------
+All data is anonymized, aggregated, and used solely to improve Wrnty.
 
-We do not use any analytics tools or tracking mechanisms. We do not monitor user behavior, usage patterns, or any other metrics related to app usage.
+Analytics
+---------
+
+We collect anonymous usage data to understand how users interact with Wrnty and to improve the app experience. This data is collected using TelemetryDeck, a privacy-focused analytics service.
+
+**What we collect:**
+
+- Feature usage patterns (which features you use)
+- App performance metrics
+- Device information (iPhone/iPad, iOS version)
+- Aggregated usage statistics
+
+**What we DO NOT collect:**
+
+- Your name, email, or personal information
+- Warranty names, details, or any content you create
+- Location data
+- Device identifiers (IDFA, IDFV)
+- IP addresses
+
+**Opting Out:**
+
+You can disable analytics at any time in the app:
+Settings → Privacy → Analytics → Toggle OFF
 
 Children's Privacy
 ------------------
@@ -56,4 +79,4 @@ If you have any questions about this Privacy Policy, please contact us at:
 Your Rights
 -----------
 
-Since we do not collect or store any personal information, there is no personal data for you to access, modify, or delete. You maintain complete control over any data you create within the app on your local device.
+Since we do not collect or store any personal information, there is no personal data for you to access, modify, or delete. You maintain complete control over any data you create within the app on your local device. Anonymous analytics can be disabled at any time through the app settings.

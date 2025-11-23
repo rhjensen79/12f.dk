@@ -54,7 +54,7 @@ We collect anonymous usage data to understand how users interact with Wrnty and 
 
 **Opting Out:**
 
-You can disable analytics at any time in the app:
+We've added an opt-out option in the app settings. You can disable telemetry and analytics at any time:
 Settings → Privacy → Analytics → Toggle OFF
 
 Children's Privacy

@@ -17,7 +17,7 @@ This privacy policy describes how WodSnap handles information when you use our i
 Information Collection and Use
 ------------------------------
 
-We are committed to protecting your privacy. Our application does not collect, store, or transmit any personal information about you or your device. We have specifically designed our app to operate completely offline and locally on your device.
+We are committed to protecting your privacy. We collect minimal, anonymous usage data through TelemetryDeck to improve the app, but we do not collect any personal information about you. All your workout data and content created within the app remains completely private and stored locally on your device.
 
 Data Storage
 ------------
@@ -27,12 +27,35 @@ All data and content created within the application is stored locally on your de
 Third-Party Services
 --------------------
 
-Our application does not integrate with any third-party services, analytics tools, or advertising networks. We do not share any information with third parties because we do not collect any information to share.
+We use TelemetryDeck (<https://telemetrydeck.com>) for analytics.
+View their privacy policy: <https://telemetrydeck.com/privacy/>
+
+All data is anonymized, aggregated, and used solely to improve WodSnap.
 
 Analytics and Tracking
 ----------------------
 
-We do not use any analytics tools or tracking mechanisms. We do not monitor user behavior, usage patterns, or any other metrics related to app usage.
+We collect anonymous usage data to understand how users interact with WodSnap and to improve the app experience. This data is collected using TelemetryDeck, a privacy-focused analytics service.
+
+**What we collect:**
+
+- Feature usage patterns (which features you use)
+- App performance metrics
+- Device information (iPhone/iPad, iOS version)
+- Aggregated usage statistics
+
+**What we DO NOT collect:**
+
+- Your name, email, or personal information
+- Workout data, exercise logs, or any fitness content you create
+- Location data
+- Device identifiers (IDFA, IDFV)
+- IP addresses
+
+**Opting Out:**
+
+We've added an opt-out option in the app settings. You can disable telemetry and analytics at any time:
+Settings → Privacy → Analytics → Toggle OFF
 
 Children's Privacy
 ------------------

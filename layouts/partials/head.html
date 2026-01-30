@@ -3,7 +3,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
 <link rel="icon" href={{ .Site.Params.favicon | default "/fav.png" }} type="image/gif">
-<script defer src="https://umami.robert-jensen.dk/script.js" data-website-id="9695b215-f70e-414e-b8a4-38fdbe4fb4ac"></script>
+<script>
+(function(){var s=document.createElement('script');s.src='https://umami.robert-jensen.dk/script.js';s.dataset.websiteId='9695b215-f70e-414e-b8a4-38fdbe4fb4ac';s.async=true;var t=setTimeout(function(){s.src='';},3000);s.onload=function(){clearTimeout(t);};document.head.appendChild(s);})();
+</script>
 <link rel="canonical" href="{{ .Permalink }}" />
 
 <!-- Enhanced SEO Meta Tags -->
@@ -174,6 +176,7 @@
     #hero {
         min-height: calc(100vh - 56px);
     }
+
 </style>
 
 <!-- Accessibility: skip link -->

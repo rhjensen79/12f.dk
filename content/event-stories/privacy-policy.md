@@ -1,7 +1,7 @@
 ---
 title: "Event Stories App Privacy Policy - 12F ApS"
 description: "Privacy policy for Event Stories iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection and complete offline functionality."
-date: 2025-011-01T11:56:57+01:00
+date: 2025-11-01T11:56:57+01:00
 draft: false
 keywords:
   - "eventstories privacy policy"

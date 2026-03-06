@@ -1,7 +1,7 @@
 ---
 title: "Ellen Solitaire App Privacy Policy - 12F ApS"
 description: "Privacy policy for Ellen Solitaire iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection and complete offline functionality."
-date: 2026-03-06T12:00:00+01:00
+date: 2026-03-05T12:00:00+01:00
 draft: false
 keywords:
   - "ellen solitaire privacy policy"

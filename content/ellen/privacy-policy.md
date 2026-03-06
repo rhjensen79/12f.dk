@@ -1,0 +1,54 @@
+---
+title: "Ellen Solitaire App Privacy Policy - 12F ApS"
+description: "Privacy policy for Ellen Solitaire iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection and complete offline functionality."
+date: 2026-03-06T12:00:00+01:00
+draft: false
+keywords:
+  - "ellen solitaire privacy policy"
+  - "marble solitaire app privacy"
+  - "iOS app no data collection"
+  - "privacy-focused app"
+  - "12F ApS privacy"
+---
+Last Updated: See top of page.
+
+This privacy policy describes how Ellen Solitaire handles information when you use our iOS application.
+
+Information Collection and Use
+------------------------------
+
+We are committed to protecting your privacy. Our application does not collect, store, or transmit any personal information about you or your device. We have specifically designed our app to operate completely offline and locally on your device.
+
+Data Storage
+------------
+
+All data and content created within the application is stored locally on your device only. We do not have access to this data, nor do we maintain any servers or databases to store user information.
+
+Third-Party Services
+--------------------
+
+We do not use any third-party services that collect data.
+
+Children's Privacy
+------------------
+
+Our application does not collect any personal information from users of any age, including children under 13.
+
+Changes to This Privacy Policy
+------------------------------
+
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the App Store and updating the "Last Updated" date at the top of this policy.
+
+Contact Us
+----------
+
+If you have any questions about this Privacy Policy, please contact us at:
+
+-   Email: ellen@12f.dk
+
+-   Website: [www.12f.dk](https://www.12f.dk)
+
+Your Rights
+-----------
+
+Since we do not collect or store any personal information, there is no personal data for you to access, modify, or delete. You maintain complete control over any data you create within the app on your local device.

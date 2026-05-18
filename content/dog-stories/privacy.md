@@ -96,7 +96,7 @@ Contact
 
 For any privacy questions:
 
-- Email: [robert@12f.dk](mailto:robert@12f.dk)
+- Email: [dog-stories@12f.dk](mailto:dog-stories@12f.dk)
 - Website: [www.12f.dk](https://www.12f.dk)
 
 Changes to This Policy

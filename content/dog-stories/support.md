@@ -15,8 +15,8 @@ Dog Stories is an iOS app for dog owners — keep your dog's health records, exp
 Get in Touch
 ------------
 
-- Email: [robert@12f.dk](mailto:robert@12f.dk)
-- Report a bug: email [robert@12f.dk](mailto:robert@12f.dk?subject=Dog%20Stories%20bug%20report) with steps to reproduce, your iOS version, and your device model.
+- Email: [dog-stories@12f.dk](mailto:dog-stories@12f.dk)
+- Report a bug: email [dog-stories@12f.dk](mailto:dog-stories@12f.dk?subject=Dog%20Stories%20bug%20report) with steps to reproduce, your iOS version, and your device model.
 
 App Store
 ---------

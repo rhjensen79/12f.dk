@@ -1,0 +1,67 @@
+{{ define "title" }}{{ humanize .Section | title | default .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "style" }}
+    .list-head { padding: clamp(2.5rem, 7vh, 5rem) 0 0; }
+
+    h1.list-title {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      font-size: clamp(2.1rem, 5.5vw, 3.9rem);
+      line-height: 1.04;
+      letter-spacing: -.015em;
+      margin: 0;
+      color: var(--paper);
+    }
+    h1.list-title .dot { color: var(--amber); }
+
+    .docs {
+      list-style: none; margin: clamp(2rem, 5vh, 3.5rem) 0 0; padding: 0;
+      max-width: 640px;
+    }
+    .docs li { border-top: 1px solid var(--line); }
+    .docs li:last-child { border-bottom: 1px solid var(--line); }
+    .docs a {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+      padding: 1.1rem .2rem;
+      text-decoration: none;
+      transition: padding-left .35s cubic-bezier(.2,.8,.2,1);
+    }
+    .docs a:hover { padding-left: .8rem; }
+    .docs a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+    .docs .name {
+      font-family: var(--serif); font-weight: 420; font-size: 1.15rem;
+      color: var(--paper);
+    }
+    .docs a:hover .name { color: #fff; }
+    .docs .date {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+
+    .list-foot { display: flex; gap: 2.2rem; margin-top: clamp(2.5rem, 6vh, 4rem); }
+{{ end }}
+
+{{ define "main" }}
+    <header class="list-head">
+      <p class="eyebrow reveal d2">12F ApS — App documentation</p>
+      <h1 class="list-title reveal d3">{{ humanize .Section | title | default .Title }}<span class="dot">.</span></h1>
+    </header>
+
+    <ul class="docs reveal d4">
+      {{ range .Pages.ByTitle }}
+      <li>
+        <a href="{{ .RelPermalink }}">
+          <span class="name">{{ .Title | replaceRE `\s*[-–—]\s*12F ApS\s*$` "" }}</span>
+          {{ with .Date }}<span class="date">{{ .Format "Jan 2, 2006" }}</span>{{ end }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+
+    <nav class="list-foot" aria-label="Page">
+      <a class="link" href="/">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> Back to 12f.dk
+      </a>
+    </nav>
+{{ end }}

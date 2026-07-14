@@ -1,5 +1,8 @@
 /config.yaml
-/static/images
+# Ignore ad-hoc images, but app icons are site content and must ship.
+# (A parent dir can't be un-ignored, hence the /* + negation.)
+/static/images/*
+!/static/images/apps/
 .vscode
 
 ### Hugo ###

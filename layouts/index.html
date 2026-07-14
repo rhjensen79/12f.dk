@@ -218,6 +218,12 @@
     .link:hover::after { transform: scaleX(1); background: var(--amber); }
     .link:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; border-radius: 2px; }
 
+    /* the primary route into the app showcase — underlined at rest */
+    .link.primary { color: var(--amber); }
+    .link.primary::after { transform: scaleX(1); background: var(--amber-soft); }
+    .link.primary:hover { color: #f5bb63; }
+    .link.primary:hover::after { background: var(--amber); }
+
     /* ---- footer row ---- */
     .footer {
       display: flex; align-items: flex-end; justify-content: space-between;
@@ -277,6 +283,9 @@
       <p class="lede reveal d4">An independent studio. We design and ship focused solutions that help businesses modernise — app&nbsp;by&nbsp;app.</p>
 
       <nav class="actions reveal d5" aria-label="Contact">
+        <a class="link primary" href="/apps/">
+          <span class="arrow" aria-hidden="true">&rsaquo;</span> See our apps
+        </a>
         <a class="link" href="https://www.linkedin.com/company/12f" target="_blank" rel="noopener">
           <span class="arrow" aria-hidden="true">&rsaquo;</span> LinkedIn
         </a>

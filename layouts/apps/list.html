@@ -20,7 +20,7 @@
           "applicationCategory": {{ $a.category }},
           "operatingSystem": "iOS",
           "url": {{ $a.appStoreUrl }},
-          "image": {{ printf "https://12f.dk/images/apps/%s.png" $a.slug }},
+          "image": {{ printf "images/apps/%s.png" $a.slug | absURL }},
           "author": { "@type": "Organization", "name": "12F ApS" }
         }
       }
@@ -28,6 +28,23 @@
     ]
   }
   </script>
+  {{ with .Params.faq }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {{- range $i, $f := . }}{{ if $i }},{{ end }}
+      {
+        "@type": "Question",
+        "name": {{ $f.question }},
+        "acceptedAnswer": { "@type": "Answer", "text": {{ $f.answer }} }
+      }
+      {{- end }}
+    ]
+  }
+  </script>
+  {{ end }}
 {{ end }}
 
 {{ define "style" }}
@@ -154,6 +171,26 @@
     }
     .sub:hover { color: var(--paper-dim); border-bottom-color: var(--line-strong); }
 
+    /* ---- FAQ ---- */
+    .faq { margin-top: clamp(3rem, 8vh, 5rem); max-width: 62ch; }
+    .faq h2.faq-title {
+      font-family: var(--serif); font-weight: 420;
+      font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.15; letter-spacing: -.01em;
+      margin: 0 0 1.8rem; color: var(--paper);
+    }
+    .faq h2.faq-title .dot { color: var(--amber); }
+    .faq-item { padding: 1.3rem 0; border-top: 1px solid var(--line); }
+    .faq-item h3 {
+      font-family: var(--serif); font-weight: 440;
+      font-size: 1.05rem; line-height: 1.3; letter-spacing: -.005em;
+      margin: 0 0 .6rem; color: var(--paper);
+    }
+    .faq-item p {
+      margin: 0;
+      font-family: var(--mono); font-size: .8rem; line-height: 1.75;
+      color: var(--paper-dim);
+    }
+
     .apps-foot { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-top: clamp(2.5rem, 6vh, 4rem); }
 
     @media (max-width: 560px) {
@@ -204,6 +241,18 @@
       </article>
       {{ end }}
     </section>
+
+    {{ with .Params.faq }}
+    <section class="faq reveal d4" aria-label="Frequently asked questions">
+      <h2 class="faq-title">Questions, answered<span class="dot">.</span></h2>
+      {{ range . }}
+      <div class="faq-item">
+        <h3>{{ .question }}</h3>
+        <p>{{ .answer }}</p>
+      </div>
+      {{ end }}
+    </section>
+    {{ end }}
 
     <nav class="apps-foot" aria-label="Page">
       <a class="link" href="/">

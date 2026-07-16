@@ -6,7 +6,6 @@
   <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
   <meta name="description" content="{{ .Description | default .Site.Params.description }}">
-  {{ with .Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
   <meta name="author" content="{{ .Site.Params.author.name }}">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#141210">
@@ -20,11 +19,15 @@
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta property="og:locale" content="en_US">
-  {{ with .Site.Params.organization.logo }}<meta property="og:image" content="{{ . }}">{{ end }}
+  {{ with .Site.Params.ogImage }}
+  <meta property="og:image" content="{{ . }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {{ end }}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title | default .Site.Title }}">
   <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
-  {{ with .Site.Params.organization.logo }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+  {{ with .Site.Params.ogImage }}<meta name="twitter:image" content="{{ . }}">{{ end }}
 
   {{ block "head" . }}{{ end }}
 
@@ -33,17 +36,7 @@
   (function(){var s=document.createElement('script');s.src='https://umami.robert-jensen.dk/script.js';s.dataset.websiteId='9695b215-f70e-414e-b8a4-38fdbe4fb4ac';s.async=true;var t=setTimeout(function(){s.src='';},3000);s.onload=function(){clearTimeout(t);};document.head.appendChild(s);})();
   </script>
 
-  <!-- Fonts: Fraunces (display + text) + JetBrains Mono (structural) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500&display=swap"
-        media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500&display=swap">
-  </noscript>
+  {{ partial "fonts.html" . }}
 
   <style>
     :root {

@@ -1,7 +1,12 @@
-baseURL: "https://12f.dk"
+baseURL: "https://www.12f.dk"
 languageCode: "en-us"
 title: "12F - Modernize your business"
 theme: hugo-profile
+
+# Unused taxonomies — keep empty /categories/ and /tags/ pages out of the build and sitemap
+disableKinds:
+  - "taxonomy"
+  - "term"
 
 outputs:
   home:
@@ -21,36 +26,6 @@ sitemap:
   changefreq: "monthly"
   priority: 0.8
   filename: "sitemap.xml"
-# SEO and Social Media
-author:
-  name: "Robert Jensen"
-  email: "robert@12f.dk"
-
-# Additional SEO parameters
-keywords:
-  - "business modernization Denmark"
-  - "digital transformation consulting"
-  - "business consulting Denmark"
-  - "digital solutions"
-  - "modernization services"
-  - "12F ApS"
-  - "Danish business modernization"
-
-# Organization info for structured data
-organization:
-  name: "12F ApS"
-  legalName: "12F ApS"
-  url: "https://12f.dk"
-  logo: "https://12f.dk/images/12F-new.svg"
-  contactPoint:
-    telephone: ""
-    contactType: "customer service"
-    email: "robert@12f.dk"
-  address:
-    addressCountry: "DK"
-  sameAs:
-    - "https://www.linkedin.com/company/12f"
-
 markup:
   goldmark:
     renderer:
@@ -61,6 +36,29 @@ params:
   title: "12F ApS - Digital Business Solutions"
   description: "12F ApS helps Danish businesses modernize through digital transformation consulting. Expert business modernization services in Denmark. CVR: 45362957"
   favicon: "/favicon.gif"
+
+  # SEO and Social Media (must live under params so templates can read .Site.Params.*)
+  author:
+    name: "Robert Jensen"
+    email: "robert@12f.dk"
+
+  # Default social share image (1200x630 raster — social crawlers ignore SVG)
+  ogImage: "https://www.12f.dk/images/og-image.png"
+
+  # Organization info for structured data
+  organization:
+    name: "12F ApS"
+    legalName: "12F ApS"
+    url: "https://www.12f.dk"
+    logo: "https://www.12f.dk/images/12F-new.svg"
+    contactPoint:
+      telephone: ""
+      contactType: "customer service"
+      email: "robert@12f.dk"
+    address:
+      addressCountry: "DK"
+    sameAs:
+      - "https://www.linkedin.com/company/12f"
   useBootstrapCDN: false
   mathjax: false
   animate: true

@@ -171,6 +171,11 @@
     }
     .sub:hover { color: var(--paper-dim); border-bottom-color: var(--line-strong); }
 
+    /* A free, no-install tool is worth more than a Privacy link and shouldn't
+       look identical to one. */
+    .sub.tool { color: var(--paper-dim); border-bottom-color: var(--line-strong); }
+    .sub.tool:hover { color: var(--amber); border-bottom-color: var(--amber); }
+
     /* ---- FAQ ---- */
     .faq { margin-top: clamp(3rem, 8vh, 5rem); max-width: 62ch; }
     .faq h2.faq-title {
@@ -235,6 +240,7 @@
             App Store
           </a>
           {{ with .landing }}<a class="sub" href="{{ . }}" target="_blank" rel="noopener">Website</a>{{ end }}
+          {{ if .tool }}<a class="sub tool" href="{{ .tool }}" target="_blank" rel="noopener">{{ .toolLabel | default "Free tool" }}</a>{{ end }}
           {{ with .privacy }}<a class="sub" href="{{ . }}">Privacy</a>{{ end }}
           {{ with .support }}<a class="sub" href="{{ . }}">Support</a>{{ end }}
         </div>

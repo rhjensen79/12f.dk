@@ -1,0 +1,25 @@
+{{/*
+  Links from an app's documentation pages (privacy policy, support, section
+  index) back to that app's own site.
+
+  Driven by data/apps.yaml and keyed on the section slug, so every app gets
+  these without any per-page markup — and an app with no landing page in the
+  data simply renders nothing. Uses the shared .link / .arrow styles from
+  baseof.html, so there is no CSS to add.
+
+  Call with the page context: {{ partial "app-links.html" . }}
+*/}}
+{{ $matches := where .Site.Data.apps.apps "slug" .Section }}
+{{ with $matches }}
+  {{ $app := index . 0 }}
+  {{ with $app.landing }}
+      <a class="link" href="{{ . }}" rel="noopener">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> {{ $app.name }} website
+      </a>
+  {{ end }}
+  {{ with $app.tool }}
+      <a class="link" href="{{ . }}" rel="noopener">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> {{ $app.toolLabel | default "Free tool" }}
+      </a>
+  {{ end }}
+{{ end }}

@@ -84,14 +84,6 @@ apps:
     appStoreUrl: "https://apps.apple.com/app/id6751361699"
     privacy: "/wodsnap/privacy-policy/"
 
-  - slug: pr
-    name: "PR"
-    tagline: "Log workouts and watch your personal records climb — for CrossFit, Hyrox and the gym."
-    category: "Health & Fitness"
-    appStoreId: "6740501315"
-    appStoreUrl: "https://apps.apple.com/app/id6740501315"
-    privacy: "/pr/privacy-policy/"
-
   - slug: neareats
     name: "NearEats"
     tagline: "Find good restaurants and cafés near you, instantly — no account, built on open map data."

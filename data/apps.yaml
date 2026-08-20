@@ -50,6 +50,15 @@ apps:
     privacy: "/bike-stories/privacy/"
     support: "/bike-stories/support/"
 
+  - slug: provaro
+    name: "Provaro"
+    tagline: "Photograph the job, mark up what matters, hand over a branded PDF report before you pack up."
+    category: "Business"
+    appStoreId: "6800068309"
+    appStoreUrl: "https://apps.apple.com/app/id6800068309"
+    landing: "https://provaro.12f.dk"
+    privacy: "/provaro/privacy-policy/"
+
   - slug: snapdeck
     name: "SnapDeck AI"
     tagline: "Snap your notes and get revision-ready flashcards in seconds — entirely on-device."

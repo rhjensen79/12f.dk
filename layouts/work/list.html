@@ -189,7 +189,7 @@
     }
 
     .wcard-links {
-      display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.2rem;
       padding-top: 1rem;
       border-top: 1px solid var(--line);
       font-family: var(--mono);
@@ -208,9 +208,12 @@
     /* Whole card is the click target; the visible link keeps the a11y label. */
     .visit::before { content: ""; position: absolute; inset: 0; z-index: 1; }
 
+    /* Marks an entry as our own product rather than client work. */
     .note {
-      font-family: var(--mono); font-size: .68rem; letter-spacing: .1em;
+      font-family: var(--mono); font-size: .62rem; letter-spacing: .14em;
       text-transform: uppercase; color: var(--muted);
+      padding: .22rem .5rem;
+      border: 1px solid var(--line-strong); border-radius: 3px;
     }
 
     /* ---- cross-link to /apps/ ---- */
@@ -270,21 +273,21 @@
 {{ define "main" }}
     {{ $sites := .Site.Data.web.sites }}
     {{ $apps := .Site.Data.apps.apps }}
-    {{ $clients := slice }}
+    {{ $sectors := slice }}
     {{ $years := slice }}
     {{ range $sites }}
-      {{ with .client }}{{ $clients = $clients | append . }}{{ end }}
+      {{ with .sector }}{{ $sectors = $sectors | append . }}{{ end }}
       {{ with .year }}{{ $years = $years | append . }}{{ end }}
     {{ end }}
 
     <header class="work-head">
       <p class="eyebrow reveal d2">12F ApS — Websites &amp; platforms</p>
-      <h1 class="work-title reveal d3">Client work, <em>built to last</em><span class="dot">.</span></h1>
-      <p class="work-lede reveal d4">Websites and platforms for Danish businesses — designed, built and hosted in-house. One studio for the whole thing, not an agency plus a developer plus a host.</p>
+      <h1 class="work-title reveal d3">Work on the <em>web</em><span class="dot">.</span></h1>
+      <p class="work-lede reveal d4">Websites, platforms and web apps for Danish businesses — some built for clients, some our own. Designed, built and hosted in-house.</p>
 
       <div class="tally reveal d4">
         <div><b>{{ len $sites }}</b><span>{{ cond (eq (len $sites) 1) "Project live" "Projects live" }}</span></div>
-        <div><b>{{ len (uniq $clients) }}</b><span>{{ cond (eq (len (uniq $clients)) 1) "Client" "Clients" }}</span></div>
+        <div><b>{{ len (uniq $sectors) }}</b><span>{{ cond (eq (len (uniq $sectors)) 1) "Sector" "Sectors" }}</span></div>
         {{ with $years }}<div><b>{{ index (sort .) 0 }}</b><span>Since</span></div>{{ end }}
       </div>
     </header>
@@ -334,7 +337,7 @@
     </section>
 
     <a class="crossref reveal d4" href="/apps/" aria-label="See all {{ len $apps }} iOS apps by 12F ApS">
-      <span class="crossref-text">We also ship our own products — <b>{{ len $apps }} iOS apps</b> live on the App&nbsp;Store, from renovation planning to trade photo reports. <b class="nowrap">See the apps&nbsp;&rsaquo;</b></span>
+      <span class="crossref-text">On the App Store, too — <b>{{ len $apps }} iOS apps</b> live, from renovation planning to trade photo reports. <b class="nowrap">See the apps&nbsp;&rsaquo;</b></span>
       <span class="crossref-icons" aria-hidden="true">
         {{ range first 8 $apps }}
         <img src="/images/apps/{{ .slug }}.png" alt="" width="30" height="30" loading="lazy" decoding="async">

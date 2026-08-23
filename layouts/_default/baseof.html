@@ -138,6 +138,29 @@
       text-transform: uppercase; color: var(--muted);
     }
 
+    /* ---- section nav (sits left of the CVR meta) ---- */
+    .topbar-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); }
+    .topnav { display: flex; gap: clamp(.9rem, 2.5vw, 1.6rem); }
+    .topnav a {
+      position: relative;
+      font-family: var(--mono); font-size: .72rem;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--paper-dim); text-decoration: none;
+      padding: .25rem 0;
+      transition: color .35s;
+    }
+    .topnav a::after {
+      content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+      background: var(--amber);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s cubic-bezier(.2,.8,.2,1);
+    }
+    .topnav a:hover { color: var(--paper); }
+    .topnav a:hover::after { transform: scaleX(1); }
+    .topnav a[aria-current="page"] { color: var(--paper); }
+    .topnav a[aria-current="page"]::after { transform: scaleX(1); }
+    .topnav a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
     .eyebrow {
       display: inline-flex; align-items: center; gap: .6rem;
       font-family: var(--mono); font-size: .74rem; letter-spacing: .26em;
@@ -202,6 +225,7 @@
 
     @media (max-width: 640px) {
       .meta { display: none; }
+      .brand b { display: none; }
       .footer { gap: 1rem; }
       .ticks { display: none; }
     }
@@ -221,7 +245,13 @@
         <span class="mark"><img src="/images/12f-logo.png" alt="12F" width="38" height="38"></span>
         <b>Modernize your business</b>
       </a>
-      <span class="meta">CVR&nbsp;45362957 · DK</span>
+      <div class="topbar-right">
+        <nav class="topnav" aria-label="Sections">
+          <a href="/work/"{{ if eq .Section "work" }} aria-current="page"{{ end }}>Work</a>
+          <a href="/apps/"{{ if eq .Section "apps" }} aria-current="page"{{ end }}>Apps</a>
+        </nav>
+        <span class="meta">CVR&nbsp;45362957 · DK</span>
+      </div>
     </header>
 
     <main id="content">

@@ -19,3 +19,11 @@ sites:
     sector: "Construction"
     url: "https://smartbyg.dk"
     tagline: "Do-it-yourself construction, properly supported — priced material lists, carpenter consultation and tool rental, from first idea to finished terrace."
+
+  - slug: billederapport
+    name: "Billederapport"
+    year: 2026
+    sector: "Trades & inspection"
+    url: "https://billederapport.dk"
+    note: "12F product"
+    tagline: "A finished photo report on the phone before you leave the customer — mark up the photos, run the checklist, send a branded PDF. Works with no signal."

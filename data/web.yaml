@@ -1,0 +1,21 @@
+# Web project showcase — drives /work/
+# Sibling of data/apps.yaml: apps live on /apps/, everything else lives here.
+#
+# Thumbnails: static/images/web/<slug>.jpg, 2:1, 1280x640, JPEG q80.
+# Capture one with:
+#   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+#     --headless --disable-gpu --hide-scrollbars --virtual-time-budget=6000 \
+#     --window-size=1600,800 --screenshot=out.png https://example.com
+#   sips -Z 1280 out.png && sips -s format jpeg -s formatOptions 80 out.png --out out.jpg
+# A missing thumbnail is fine — the card falls back to a typographic tile.
+#
+# Fields: slug, name, client, year, url required. sector, tagline, note optional.
+
+sites:
+  - slug: smartbyg
+    name: "SmartByg"
+    client: "SmartByg"
+    year: 2026
+    sector: "Construction"
+    url: "https://smartbyg.dk"
+    tagline: "Do-it-yourself construction, properly supported — priced material lists, carpenter consultation and tool rental, from first idea to finished terrace."

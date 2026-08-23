@@ -1,0 +1,368 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "head" }}
+  {{ $sites := .Site.Data.web.sites }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Web projects by 12F ApS",
+    "description": {{ .Description }},
+    "numberOfItems": {{ len $sites }},
+    "itemListElement": [
+      {{- range $i, $s := $sites }}{{ if $i }},{{ end }}
+      {
+        "@type": "ListItem",
+        "position": {{ add $i 1 }},
+        "item": {
+          "@type": "WebSite",
+          "name": {{ $s.name }},
+          "url": {{ $s.url }},
+          {{ with $s.tagline }}"description": {{ . }},{{ end }}
+          {{ if (fileExists (printf "static/images/web/%s.jpg" $s.slug)) }}"image": {{ printf "images/web/%s.jpg" $s.slug | absURL }},{{ end }}
+          "creator": { "@type": "Organization", "name": "12F ApS", "url": "https://www.12f.dk" }
+        }
+      }
+      {{- end }}
+    ]
+  }
+  </script>
+  {{ with .Params.faq }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {{- range $i, $f := . }}{{ if $i }},{{ end }}
+      {
+        "@type": "Question",
+        "name": {{ $f.question }},
+        "acceptedAnswer": { "@type": "Answer", "text": {{ $f.answer }} }
+      }
+      {{- end }}
+    ]
+  }
+  </script>
+  {{ end }}
+{{ end }}
+
+{{ define "style" }}
+    .work-head { padding: clamp(2.5rem, 7vh, 5rem) 0 0; }
+
+    h1.work-title {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      font-size: clamp(2.1rem, 5.5vw, 3.9rem);
+      line-height: 1.04;
+      letter-spacing: -.015em;
+      margin: 0;
+      max-width: 18ch;
+      color: var(--paper);
+    }
+    h1.work-title em { font-style: italic; font-weight: 360; color: var(--paper-dim); }
+    h1.work-title .dot { color: var(--amber); }
+
+    .work-lede {
+      margin: 1.6rem 0 0;
+      max-width: 52ch;
+      font-family: var(--mono);
+      font-size: clamp(.82rem, 1.4vw, .92rem);
+      line-height: 1.75;
+      color: var(--paper-dim);
+    }
+
+    /* ---- count strip (matches /apps/) ---- */
+    .tally {
+      display: flex; flex-wrap: wrap; gap: 1rem 3rem;
+      margin: clamp(2rem, 5vh, 3rem) 0 0;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+    }
+    .tally div { display: flex; flex-direction: column; gap: .35rem; }
+    .tally b {
+      font-family: var(--serif); font-weight: 420;
+      font-size: 1.5rem; line-height: 1; color: var(--paper);
+    }
+    .tally span {
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ---- grid ----
+       Wider minmax than /apps/: these cards lead with a 2:1 screenshot, so a
+       narrow column would shrink the shot past legibility. */
+    .wgrid {
+      display: grid;
+      /* auto-FIT, not auto-fill: with one project the card fills the row rather
+         than leaving empty tracks showing through the 1px background. */
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1px;
+      margin: clamp(2.5rem, 6vh, 4rem) 0 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .wcard {
+      position: relative;
+      display: flex; flex-direction: column;
+      background: var(--ink);
+      transition: background-color .45s cubic-bezier(.2,.8,.2,1);
+    }
+    .wcard::before {
+      content: "";
+      position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+      z-index: 2;
+      background: var(--amber);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+    .wcard:hover { background: var(--ink-soft); }
+    .wcard:hover::before { transform: scaleX(1); }
+
+    /* ---- screenshot ---- */
+    .shot {
+      position: relative;
+      aspect-ratio: 2 / 1;
+      /* At one-per-row the 2:1 box would be ~500px tall. Cap it; object-fit
+         cover + top anchoring crops the bottom rather than squashing. */
+      max-height: 300px;
+      overflow: hidden;
+      background: var(--ink-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .shot img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+      /* Client sites are their own brands — muted at rest so a wall of
+         screenshots doesn't fight the page's palette, true colour on hover. */
+      filter: grayscale(.55) brightness(.72) contrast(1.05);
+      transform: scale(1.01);
+      transition: filter .55s cubic-bezier(.2,.8,.2,1),
+                  transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .wcard:hover .shot img { filter: none; transform: scale(1.04); }
+
+    /* Warm wash over the shot, lifted on hover along with the desaturation. */
+    .shot::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,18,16,.55), rgba(20,18,16,0) 60%);
+      opacity: 1; transition: opacity .55s cubic-bezier(.2,.8,.2,1);
+    }
+    .wcard:hover .shot::after { opacity: .35; }
+
+    /* Fallback tile when a project has no screenshot yet. */
+    .shot.blank {
+      display: grid; place-items: center;
+      background:
+        radial-gradient(90% 120% at 50% 0%, rgba(230,161,60,.10), transparent 60%),
+        var(--ink-soft);
+    }
+    .shot.blank span {
+      font-family: var(--serif); font-weight: 380; font-style: italic;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: var(--paper-dim); opacity: .5;
+    }
+    .shot.blank::after { display: none; }
+
+    /* ---- card body ---- */
+    .wbody { display: flex; flex-direction: column; gap: .9rem; padding: 1.5rem 1.6rem 1.4rem; flex: 1; }
+
+    .wcard h2 {
+      font-family: var(--serif); font-weight: 440;
+      font-size: 1.28rem; line-height: 1.15; letter-spacing: -.01em;
+      margin: 0 0 .35rem; color: var(--paper);
+    }
+    .credit {
+      font-family: var(--mono); font-size: .64rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .credit .sep { color: var(--line-strong); margin: 0 .5rem; }
+
+    .wcard p {
+      margin: 0;
+      font-family: var(--mono); font-size: .78rem; line-height: 1.7;
+      color: var(--paper-dim);
+      flex: 1;
+    }
+
+    .wcard-links {
+      display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+    }
+    .visit {
+      display: inline-flex; align-items: center; gap: .45rem;
+      text-decoration: none;
+      font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .visit .arrow { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .visit:hover { color: #f5bb63; }
+    .wcard:hover .visit .arrow { transform: translateX(4px); }
+    .visit:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
+    /* Whole card is the click target; the visible link keeps the a11y label. */
+    .visit::before { content: ""; position: absolute; inset: 0; z-index: 1; }
+
+    .note {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ---- cross-link to /apps/ ---- */
+    .crossref {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.2rem;
+      margin-top: clamp(2.5rem, 6vh, 4rem);
+      padding: 1.5rem 1.6rem;
+      border: 1px solid var(--line);
+      background: var(--ink-soft);
+      text-decoration: none;
+      transition: border-color .45s, background-color .45s;
+    }
+    .crossref:hover { border-color: var(--line-strong); background: #201c17; }
+    .crossref-text { font-family: var(--mono); font-size: .8rem; line-height: 1.7; color: var(--paper-dim); max-width: 46ch; }
+    .crossref-text b { color: var(--paper); font-weight: 500; }
+    .crossref-text b.nowrap { white-space: nowrap; }
+    .crossref-icons { display: flex; flex-wrap: wrap; gap: 6px; }
+    .crossref-icons img {
+      width: 30px; height: 30px; display: block; border-radius: 8px;
+      box-shadow: 0 0 0 1px var(--line-strong);
+      filter: grayscale(1) brightness(.85); opacity: .62;
+      transition: filter .5s, opacity .5s;
+    }
+    .crossref:hover .crossref-icons img { filter: none; opacity: 1; }
+    .crossref:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    /* ---- FAQ (matches /apps/) ---- */
+    .faq { margin-top: clamp(3rem, 8vh, 5rem); max-width: 62ch; }
+    .faq h2.faq-title {
+      font-family: var(--serif); font-weight: 420;
+      font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.15; letter-spacing: -.01em;
+      margin: 0 0 1.8rem; color: var(--paper);
+    }
+    .faq h2.faq-title .dot { color: var(--amber); }
+    .faq-item { padding: 1.3rem 0; border-top: 1px solid var(--line); }
+    .faq-item h3 {
+      font-family: var(--serif); font-weight: 440;
+      font-size: 1.05rem; line-height: 1.3; letter-spacing: -.005em;
+      margin: 0 0 .6rem; color: var(--paper);
+    }
+    .faq-item p {
+      margin: 0;
+      font-family: var(--mono); font-size: .8rem; line-height: 1.75;
+      color: var(--paper-dim);
+    }
+
+    .work-foot { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-top: clamp(2.5rem, 6vh, 4rem); }
+
+    @media (max-width: 560px) {
+      .wgrid { grid-template-columns: 1fr; }
+      .tally { gap: 1rem 2rem; }
+      .crossref { flex-direction: column; align-items: flex-start; }
+    }
+{{ end }}
+
+{{ define "main" }}
+    {{ $sites := .Site.Data.web.sites }}
+    {{ $apps := .Site.Data.apps.apps }}
+    {{ $clients := slice }}
+    {{ $years := slice }}
+    {{ range $sites }}
+      {{ with .client }}{{ $clients = $clients | append . }}{{ end }}
+      {{ with .year }}{{ $years = $years | append . }}{{ end }}
+    {{ end }}
+
+    <header class="work-head">
+      <p class="eyebrow reveal d2">12F ApS — Websites &amp; platforms</p>
+      <h1 class="work-title reveal d3">Client work, <em>built to last</em><span class="dot">.</span></h1>
+      <p class="work-lede reveal d4">Websites and platforms for Danish businesses — designed, built and hosted in-house. One studio for the whole thing, not an agency plus a developer plus a host.</p>
+
+      <div class="tally reveal d4">
+        <div><b>{{ len $sites }}</b><span>{{ cond (eq (len $sites) 1) "Project live" "Projects live" }}</span></div>
+        <div><b>{{ len (uniq $clients) }}</b><span>{{ cond (eq (len (uniq $clients)) 1) "Client" "Clients" }}</span></div>
+        {{ with $years }}<div><b>{{ index (sort .) 0 }}</b><span>Since</span></div>{{ end }}
+      </div>
+    </header>
+
+    <section class="wgrid reveal d4" aria-label="Web projects by 12F ApS">
+      {{ range $sites }}
+      {{ $shot := printf "images/web/%s.jpg" .slug }}
+      <article class="wcard">
+        {{ if fileExists (printf "static/%s" $shot) }}
+        <div class="shot">
+          <img src="/{{ $shot }}" alt="Screenshot of the {{ .name }} website" width="1280" height="640" loading="lazy" decoding="async">
+        </div>
+        {{ else }}
+        <div class="shot blank" aria-hidden="true"><span>{{ .name }}</span></div>
+        {{ end }}
+
+        <div class="wbody">
+          <div>
+            <h2>{{ .name }}</h2>
+            {{/* Credit line: client · sector · year, skipping any that are absent.
+                 The client is dropped when it just repeats the project name. */}}
+            {{ $client := "" }}
+            {{ if and .client (ne .client .name) }}{{ $client = .client }}{{ end }}
+            {{ $bits := slice }}
+            {{ with $client }}{{ $bits = $bits | append . }}{{ end }}
+            {{ with .sector }}{{ $bits = $bits | append . }}{{ end }}
+            {{ with .year }}{{ $bits = $bits | append (string .) }}{{ end }}
+            {{ with $bits }}
+            <span class="credit">
+              {{- range $i, $b := . }}{{ if $i }}<span class="sep">·</span>{{ end }}{{ $b }}{{ end -}}
+            </span>
+            {{ end }}
+          </div>
+
+          {{ with .tagline }}<p>{{ . }}</p>{{ end }}
+
+          <div class="wcard-links">
+            <a class="visit" href="{{ .url }}" target="_blank" rel="noopener">
+              {{ replaceRE "^https?://(www\\.)?" "" (strings.TrimSuffix "/" .url) }}
+              <span class="arrow" aria-hidden="true">&rsaquo;</span>
+            </a>
+            {{ with .note }}<span class="note">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+      </article>
+      {{ end }}
+    </section>
+
+    <a class="crossref reveal d4" href="/apps/" aria-label="See all {{ len $apps }} iOS apps by 12F ApS">
+      <span class="crossref-text">We also ship our own products — <b>{{ len $apps }} iOS apps</b> live on the App&nbsp;Store, from renovation planning to trade photo reports. <b class="nowrap">See the apps&nbsp;&rsaquo;</b></span>
+      <span class="crossref-icons" aria-hidden="true">
+        {{ range first 8 $apps }}
+        <img src="/images/apps/{{ .slug }}.png" alt="" width="30" height="30" loading="lazy" decoding="async">
+        {{ end }}
+      </span>
+    </a>
+
+    {{ with .Params.faq }}
+    <section class="faq reveal d4" aria-label="Frequently asked questions">
+      <h2 class="faq-title">Questions, answered<span class="dot">.</span></h2>
+      {{ range . }}
+      <div class="faq-item">
+        <h3>{{ .question }}</h3>
+        <p>{{ .answer }}</p>
+      </div>
+      {{ end }}
+    </section>
+    {{ end }}
+
+    <nav class="work-foot" aria-label="Page">
+      <a class="link" href="/">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> Back to 12f.dk
+      </a>
+      <a class="link" href="/apps/">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> Apps
+      </a>
+      <a class="link" href="mailto:robert@12f.dk">
+        <span class="arrow" aria-hidden="true">&rsaquo;</span> robert@12f.dk
+      </a>
+    </nav>
+{{ end }}

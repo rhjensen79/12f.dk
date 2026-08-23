@@ -248,6 +248,30 @@
     .proof-icons img:nth-child(12) { transition-delay: .22s; }
     .proof-icons img:nth-child(13) { transition-delay: .24s; }
 
+    /* second proof row: client web work. Domain chips instead of icons —
+       websites don't have an icon, and the domain IS the recognisable mark. */
+    .proof-web { margin-top: .95rem; }
+    .proof-domains { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proof-domains span {
+      display: inline-block;
+      padding: .3rem .6rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .06em;
+      color: var(--muted);
+      transition: color .5s cubic-bezier(.2,.8,.2,1),
+                  border-color .5s cubic-bezier(.2,.8,.2,1),
+                  transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+    .proof-web:hover .proof-domains span,
+    .proof-web:focus-visible .proof-domains span {
+      color: var(--paper); border-color: var(--amber); transform: translateY(-2px);
+    }
+    .proof-domains span:nth-child(2) { transition-delay: .03s; }
+    .proof-domains span:nth-child(3) { transition-delay: .06s; }
+    .proof-domains span:nth-child(4) { transition-delay: .09s; }
+    .proof-domains span:nth-child(5) { transition-delay: .12s; }
+
     .proof-label {
       display: inline-flex; align-items: center; gap: .6rem;
       font-family: var(--mono); font-size: .72rem;
@@ -288,12 +312,14 @@
     .d3 { animation-delay: .28s; } .d4 { animation-delay: .42s; }
     .d5 { animation-delay: .56s; } .d6 { animation-delay: .70s; }
     .d7 { animation-delay: .84s; }
+    .d5b { animation-delay: .63s; }
     @keyframes rise { to { opacity: 1; transform: none; } }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal { animation: none; opacity: 1; transform: none; }
       .link .arrow, .link::after { transition: none; }
       .proof-icons img, .proof-label, .proof-label .arrow { transition: none; }
+      .proof-domains span { transition: none; }
     }
 
     @media (max-width: 640px) {
@@ -334,6 +360,21 @@
           <span class="arrow" aria-hidden="true">&rsaquo;</span>
         </span>
       </a>
+
+      {{ $sites := .Site.Data.web.sites }}
+      {{ with $sites }}
+      <a class="proof proof-web reveal d5b" href="/work/" aria-label="See all {{ len . }} web {{ cond (eq (len .) 1) "project" "projects" }} by 12F ApS">
+        <span class="proof-domains" aria-hidden="true">
+          {{ range . }}
+          <span>{{ replaceRE "^https?://(www\\.)?" "" (strings.TrimSuffix "/" .url) }}</span>
+          {{ end }}
+        </span>
+        <span class="proof-label">
+          <b>{{ len . }} {{ cond (eq (len .) 1) "website" "websites" }}</b> {{ cond (eq (len .) 1) "built for a client" "&amp; platforms built for clients" }}
+          <span class="arrow" aria-hidden="true">&rsaquo;</span>
+        </span>
+      </a>
+      {{ end }}
 
       <nav class="actions reveal d6" aria-label="Contact">
         <a class="link" href="https://www.linkedin.com/company/12f" target="_blank" rel="noopener">

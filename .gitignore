@@ -3,6 +3,7 @@
 # (A parent dir can't be un-ignored, hence the /* + negation.)
 /static/images/*
 !/static/images/apps/
+!/static/images/web/
 !/static/images/og-image.png
 .vscode
 

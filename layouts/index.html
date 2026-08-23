@@ -151,6 +151,29 @@
       text-transform: uppercase; color: var(--muted);
     }
 
+    /* ---- section nav (sits left of the CVR meta) ---- */
+    .topbar-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); }
+    .topnav { display: flex; gap: clamp(.9rem, 2.5vw, 1.6rem); }
+    .topnav a {
+      position: relative;
+      font-family: var(--mono); font-size: .72rem;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--paper-dim); text-decoration: none;
+      padding: .25rem 0;
+      transition: color .35s;
+    }
+    .topnav a::after {
+      content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+      background: var(--amber);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s cubic-bezier(.2,.8,.2,1);
+    }
+    .topnav a:hover { color: var(--paper); }
+    .topnav a:hover::after { transform: scaleX(1); }
+    .topnav a[aria-current="page"] { color: var(--paper); }
+    .topnav a[aria-current="page"]::after { transform: scaleX(1); }
+    .topnav a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
     /* ---- hero ---- */
     /* padding trimmed so hero + proof strip still land within one screen */
     .hero { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.25rem, 3vh, 4.5rem) 0; }
@@ -248,6 +271,30 @@
     .proof-icons img:nth-child(12) { transition-delay: .22s; }
     .proof-icons img:nth-child(13) { transition-delay: .24s; }
 
+    /* second proof row: client web work. Domain chips instead of icons —
+       websites don't have an icon, and the domain IS the recognisable mark. */
+    .proof-web { margin-top: .95rem; }
+    .proof-domains { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proof-domains span {
+      display: inline-block;
+      padding: .3rem .6rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .06em;
+      color: var(--muted);
+      transition: color .5s cubic-bezier(.2,.8,.2,1),
+                  border-color .5s cubic-bezier(.2,.8,.2,1),
+                  transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+    .proof-web:hover .proof-domains span,
+    .proof-web:focus-visible .proof-domains span {
+      color: var(--paper); border-color: var(--amber); transform: translateY(-2px);
+    }
+    .proof-domains span:nth-child(2) { transition-delay: .03s; }
+    .proof-domains span:nth-child(3) { transition-delay: .06s; }
+    .proof-domains span:nth-child(4) { transition-delay: .09s; }
+    .proof-domains span:nth-child(5) { transition-delay: .12s; }
+
     .proof-label {
       display: inline-flex; align-items: center; gap: .6rem;
       font-family: var(--mono); font-size: .72rem;
@@ -288,16 +335,19 @@
     .d3 { animation-delay: .28s; } .d4 { animation-delay: .42s; }
     .d5 { animation-delay: .56s; } .d6 { animation-delay: .70s; }
     .d7 { animation-delay: .84s; }
+    .d5b { animation-delay: .63s; }
     @keyframes rise { to { opacity: 1; transform: none; } }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal { animation: none; opacity: 1; transform: none; }
       .link .arrow, .link::after { transition: none; }
       .proof-icons img, .proof-label, .proof-label .arrow { transition: none; }
+      .proof-domains span { transition: none; }
     }
 
     @media (max-width: 640px) {
       .meta { display: none; }
+      .brand b { display: none; }
       .footer { gap: 1rem; }
       .ticks { display: none; }
     }
@@ -314,7 +364,13 @@
         <span class="mark"><img src="/images/12f-logo.png" alt="12F" width="38" height="38"></span>
         <b>Modernize your business</b>
       </a>
-      <span class="meta">CVR&nbsp;45362957 · DK</span>
+      <div class="topbar-right">
+        <nav class="topnav" aria-label="Sections">
+          <a href="/work/">Work</a>
+          <a href="/apps/">Apps</a>
+        </nav>
+        <span class="meta">CVR&nbsp;45362957 · DK</span>
+      </div>
     </header>
 
     <section class="hero">
@@ -334,6 +390,21 @@
           <span class="arrow" aria-hidden="true">&rsaquo;</span>
         </span>
       </a>
+
+      {{ $sites := .Site.Data.web.sites }}
+      {{ with $sites }}
+      <a class="proof proof-web reveal d5b" href="/work/" aria-label="See all {{ len . }} web {{ cond (eq (len .) 1) "project" "projects" }} by 12F ApS">
+        <span class="proof-domains" aria-hidden="true">
+          {{ range . }}
+          <span>{{ replaceRE "^https?://(www\\.)?" "" (strings.TrimSuffix "/" .url) }}</span>
+          {{ end }}
+        </span>
+        <span class="proof-label">
+          <b>{{ len . }} web {{ cond (eq (len .) 1) "project" "projects" }}</b> beyond the App Store
+          <span class="arrow" aria-hidden="true">&rsaquo;</span>
+        </span>
+      </a>
+      {{ end }}
 
       <nav class="actions reveal d6" aria-label="Contact">
         <a class="link" href="https://www.linkedin.com/company/12f" target="_blank" rel="noopener">

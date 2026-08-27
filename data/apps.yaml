@@ -47,6 +47,7 @@ apps:
     category: "Health & Fitness"
     appStoreId: "6783374730"
     appStoreUrl: "https://apps.apple.com/app/id6783374730"
+    landing: "https://bike-stories.12f.dk"
     privacy: "/bike-stories/privacy/"
     support: "/bike-stories/support/"
 
@@ -99,6 +100,7 @@ apps:
     category: "Food & Drink"
     appStoreId: "6754101006"
     appStoreUrl: "https://apps.apple.com/app/id6754101006"
+    landing: "https://neareats.12f.dk"
     privacy: "/neareats/privacy-policy/"
 
   - slug: sonicsnap

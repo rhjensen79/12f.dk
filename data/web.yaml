@@ -10,6 +10,11 @@
 # A missing thumbnail is fine — the card falls back to a typographic tile.
 #
 # Fields: slug, name, client, year, url required. sector, tagline, note optional.
+#
+# After editing this file, bump `date:` in content/work/_index.md. The sitemap's
+# <lastmod> comes from that frontmatter date, and it is what the IndexNow
+# workflow diffs against — a change here alone renders a new /work/ page that
+# search engines are never told about.
 
 sites:
   - slug: smartbyg

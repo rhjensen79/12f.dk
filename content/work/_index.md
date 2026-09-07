@@ -1,7 +1,7 @@
 ---
 title: "Work"
 description: "Websites, platforms and web apps built by 12F ApS — client work for Danish businesses plus our own products, designed, built and hosted in-house."
-date: 2026-08-23T12:00:00+02:00
+date: 2026-09-07T14:30:00+02:00
 draft: false
 faq:
   - question: "What kind of web work does 12F ApS take on?"

@@ -13,6 +13,12 @@ on:
 
 permissions:
   contents: read
+  # actions/cache saves through the Actions cache service, which refuses the
+  # write unless the token carries `actions: write`. Without it the sitemap
+  # snapshot is never stored, every run starts from an empty cache, and the
+  # diff below degrades to "first run" — resubmitting the whole sitemap on
+  # each deploy instead of only what changed.
+  actions: write
 
 concurrency:
   group: indexnow-${{ github.ref }}
@@ -110,10 +116,12 @@ jobs:
               # No <lastmod> anywhere: can't tell what changed, so only submit new URLs.
               changed = sorted(u for u in current if u not in previous)
 
-          json.dump(current, open(snap, "w"))
+          def save_snapshot():
+              json.dump(current, open(snap, "w"))
 
           if not changed:
               print("No changed URLs since last deploy.")
+              save_snapshot()
               sys.exit(0)
 
           print(f"Submitting {len(changed)} URL(s) to IndexNow:")
@@ -140,5 +148,10 @@ jobs:
                   body = e.read().decode(errors="replace")
                   print(f"IndexNow HTTP {e.code}: {body}")
                   if e.code >= 400:
+                      # Leave the snapshot untouched so this batch is retried on
+                      # the next deploy rather than being recorded as submitted.
                       sys.exit(1)
+
+          # Only now that every batch was accepted do we record what was sent.
+          save_snapshot()
           PY

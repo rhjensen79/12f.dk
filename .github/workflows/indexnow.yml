@@ -8,23 +8,27 @@ name: IndexNow
 # root), so it is safe to hard-code here — there is no secret to protect.
 # Google does not participate in IndexNow.
 
+# Called from the deploy workflow once Pages has published, rather than
+# triggered by `deployment_status`. A deployment_status-triggered run is not
+# granted cache-write scope — actions/cache fails there with "cache write
+# denied: token has no writable scopes" even with `actions: write` — so the
+# sitemap snapshot never persisted and every run resubmitted the whole
+# sitemap. As a reusable workflow it runs in the caller's push context, where
+# the cache saves normally and the diff below actually works.
 on:
-  deployment_status:
-
-permissions:
-  contents: read
-
-concurrency:
-  group: indexnow-${{ github.ref }}
-  cancel-in-progress: false
+  workflow_call:
+    inputs:
+      site_url:
+        description: "Root URL of the published site, e.g. https://www.12f.dk/"
+        required: true
+        type: string
 
 jobs:
   submit:
-    # Only act on a *successful* GitHub Pages deployment.
-    if: >-
-      github.event.deployment_status.state == 'success' &&
-      github.event.deployment_status.environment == 'github-pages'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
     steps:
       - name: Restore previous sitemap snapshot
         uses: actions/cache@v4
@@ -37,8 +41,7 @@ jobs:
       - name: Submit changed URLs to IndexNow
         env:
           INDEXNOW_KEY: b0b687723d7b1c12e407c2dfb52947d1
-          SITE_URL: ${{ github.event.deployment_status.environment_url }}
-          TARGET_URL: ${{ github.event.deployment_status.target_url }}
+          SITE_URL: ${{ inputs.site_url }}
         run: |
           python3 - <<'PY'
           import json, os, sys, urllib.request, urllib.error
@@ -46,9 +49,9 @@ jobs:
           from urllib.parse import urlparse
 
           key = os.environ["INDEXNOW_KEY"]
-          site = (os.environ.get("SITE_URL") or os.environ.get("TARGET_URL") or "").strip()
+          site = (os.environ.get("SITE_URL") or "").strip()
           if not site:
-              print("No deployment URL on the event; nothing to do.")
+              print("No site URL supplied; nothing to do.")
               sys.exit(0)
           if not site.endswith("/"):
               site += "/"
@@ -110,10 +113,12 @@ jobs:
               # No <lastmod> anywhere: can't tell what changed, so only submit new URLs.
               changed = sorted(u for u in current if u not in previous)
 
-          json.dump(current, open(snap, "w"))
+          def save_snapshot():
+              json.dump(current, open(snap, "w"))
 
           if not changed:
               print("No changed URLs since last deploy.")
+              save_snapshot()
               sys.exit(0)
 
           print(f"Submitting {len(changed)} URL(s) to IndexNow:")
@@ -140,5 +145,10 @@ jobs:
                   body = e.read().decode(errors="replace")
                   print(f"IndexNow HTTP {e.code}: {body}")
                   if e.code >= 400:
+                      # Leave the snapshot untouched so this batch is retried on
+                      # the next deploy rather than being recorded as submitted.
                       sys.exit(1)
+
+          # Only now that every batch was accepted do we record what was sent.
+          save_snapshot()
           PY

@@ -10,6 +10,11 @@
 # A missing thumbnail is fine — the card falls back to a typographic tile.
 #
 # Fields: slug, name, client, year, url required. sector, tagline, note optional.
+#
+# After editing this file, bump `date:` in content/work/_index.md. The sitemap's
+# <lastmod> comes from that frontmatter date, and it is what the IndexNow
+# workflow diffs against — a change here alone renders a new /work/ page that
+# search engines are never told about.
 
 sites:
   - slug: smartbyg
@@ -27,3 +32,11 @@ sites:
     url: "https://billederapport.dk"
     note: "12F product"
     tagline: "A finished photo report on the phone before you leave the customer — mark up the photos, run the checklist, send a branded PDF. Works with no signal."
+
+  - slug: vinnie-davida-sondergaard
+    name: "Vinnie Davida Søndergaard"
+    client: "Vinnie Davida Søndergaard"
+    year: 2026
+    sector: "Health & performance"
+    url: "https://vinnie-davida-sondergaard.dk"
+    tagline: "One practice, three ways in — body treatment at the Østerbro clinic, outdoor TRX training by the water, and People & Performance consulting for organisations."

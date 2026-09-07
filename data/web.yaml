@@ -27,3 +27,11 @@ sites:
     url: "https://billederapport.dk"
     note: "12F product"
     tagline: "A finished photo report on the phone before you leave the customer — mark up the photos, run the checklist, send a branded PDF. Works with no signal."
+
+  - slug: vinnie-davida-sondergaard
+    name: "Vinnie Davida Søndergaard"
+    client: "Vinnie Davida Søndergaard"
+    year: 2026
+    sector: "Health & performance"
+    url: "https://vinnie-davida-sondergaard.dk"
+    tagline: "One practice, three ways in — body treatment at the Østerbro clinic, outdoor TRX training by the water, and People & Performance consulting for organisations."

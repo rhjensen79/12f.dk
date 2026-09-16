@@ -118,3 +118,12 @@ apps:
     appStoreId: "6760114432"
     appStoreUrl: "https://apps.apple.com/app/id6760114432"
     privacy: "/ellen/privacy-policy/"
+
+  - slug: rankmaster
+    name: "RankMaster"
+    tagline: "Guess where things rank — closer is better. A daily round of world facts, scored on how near you land."
+    category: "Games"
+    appStoreId: "6810373394"
+    appStoreUrl: "https://apps.apple.com/app/id6810373394"
+    support: "/rankmaster/support/"
+    privacy: "/rankmaster/privacy-policy/"

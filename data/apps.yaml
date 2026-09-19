@@ -125,5 +125,6 @@ apps:
     category: "Games"
     appStoreId: "6810373394"
     appStoreUrl: "https://apps.apple.com/app/id6810373394"
-    support: "/rankmaster/support/"
-    privacy: "/rankmaster/privacy-policy/"
+    landing: "https://rankmaster.12f.dk"
+    support: "https://rankmaster.12f.dk/support.html"
+    privacy: "https://rankmaster.12f.dk/privacy-policy.html"

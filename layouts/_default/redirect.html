@@ -1,0 +1,47 @@
+{{- /*
+  A redirect stub. Used by pages whose content has moved to an app's own site
+  and whose URL has to keep resolving — the App Store links at some of these
+  directly, so deleting the page would break a listing.
+
+  Set in front matter:
+      layout: redirect
+      redirect: https://example.com/where-it-went
+
+  GitHub Pages cannot serve a 301, so this is `rel="canonical"` plus a
+  zero-delay meta refresh, which is the strongest cross-domain signal available
+  on static hosting. It is deliberately NOT `noindex`: a page that is not
+  indexed cannot pass its canonical signal, so the two would cancel out.
+*/ -}}
+{{- $target := .Params.redirect -}}
+{{- if not $target -}}
+  {{- errorf "layouts/_default/redirect.html: %q has layout 'redirect' but no 'redirect' param" .Path -}}
+{{- end -}}
+<!doctype html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ .Title }} has moved</title>
+    <link rel="canonical" href="{{ $target }}" />
+    <meta http-equiv="refresh" content="0; url={{ $target }}" />
+    <meta name="description" content="{{ .Title }} has moved to {{ $target }}" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      This page has moved to <a href="{{ $target }}">{{ $target }}</a>.
+    </p>
+  </body>
+</html>

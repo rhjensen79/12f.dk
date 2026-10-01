@@ -1,72 +1,67 @@
 ---
 title: "Home Stories App Privacy Policy - 12F ApS"
-description: "Privacy policy for Home Stories iOS app by 12F ApS. Learn about our privacy-focused approach with no data collection and complete offline functionality."
+description: "Privacy policy for the Home Stories iOS app by 12F ApS: what anonymous analytics we collect, how iCloud sync works, and how to opt out."
 date: 2025-11-01T11:56:57+01:00
+lastmod: 2026-10-01
 draft: false
 keywords:
   - "homestories privacy policy"
   - "homestories tracking app privacy"
-  - "iOS app no data collection"
   - "privacy-focused app"
   - "12F ApS privacy"
 ---
-Last Updated: See top of page.
+Last Updated: 1 October 2026
 
 This privacy policy describes how Home Stories handles information when you use our iOS application.
 
 Information Collection and Use
 ------------------------------
 
-We are committed to protecting your privacy. Our application does not collect, store, or transmit any personal information about you or your device. We have specifically designed our app to operate completely offline and locally on your device.
+Home Stories does not ask for your name, email or any account with us. The projects, tasks, items, notes, photos and documents you create belong to you, and we have no access to them. To improve the app, we collect anonymous usage data (see Analytics below), and you can switch that off at any time.
 
 Data Storage
 ------------
 
-All data and content created within the application is stored locally on your device only. We do not have access to this data, nor do we maintain any servers or databases to store user information.
-
-Third-Party Services
---------------------
-
-We use TelemetryDeck (<https://telemetrydeck.com>) for analytics.
-View their privacy policy: <https://telemetrydeck.com/privacy/>
-
-All data is anonymized, aggregated, and used solely to improve Home Stories.
+Everything you create is stored on your device. If you turn on iCloud sync, it is also stored in your own iCloud account through Apple's CloudKit, so it can sync between your devices. If you share a project, it is also available to the people you invite. Apple runs iCloud under its own [privacy policy](https://www.apple.com/legal/privacy/). We do not run any servers or databases that hold your projects.
 
 Analytics
 ---------
 
-We collect anonymous usage data to understand how users interact with Home Stories and to improve the app experience. This data is collected using TelemetryDeck, a privacy-focused analytics service.
+We use [PostHog](https://posthog.com) for analytics, hosted in the EU. View their privacy policy: <https://posthog.com/privacy>
+
+Analytics data is not linked to your identity. It is used only to understand how Home Stories is used and to improve it. It is never sold, and never used to track you across other companies' apps or websites.
 
 **What we collect:**
 
-- Feature usage patterns (which features you use)
-- App performance metrics
-- Device information (iPhone/iPad, iOS version)
-- Aggregated usage statistics
+- Which features and screens you use, and app performance
+- Device information (iPhone or iPad model, iOS version, app version, language)
+- Screen recordings of app sessions, used to find bugs and confusing screens. Text fields and images are masked, so what you type and your photos are never recorded. Other text shown on screen, such as a project name in a list, can appear in a recording.
+- Whether you installed the app after tapping an ad from Apple Ads. Apple's AdServices framework tells the app this, along with the ad campaign and keyword involved. This lets us see which of our ads actually help people. No App Tracking Transparency permission is involved, and no other app or website sees this information.
+- A random identifier created by the app, so events from the same install can be grouped together
 
 **What we DO NOT collect:**
 
-- Your name, email, or personal information
-- Project names, task details, or any content you create
+- Your name, email, or other contact information
+- What you type, or your photos and documents
 - Location data
-- Device identifiers (IDFA, IDFV)
-- IP addresses
+- The advertising identifier (IDFA)
 
 **Opting Out:**
 
-You can disable analytics at any time in the app:
+You can turn analytics off at any time in the app:
 Settings → Privacy → Analytics → Toggle OFF
 
+When analytics is off, the app sends nothing to PostHog and does not ask Apple about ads either.
 
 Children's Privacy
 ------------------
 
-Our application does not collect any personal information from users of any age, including children under 13.
+We do not knowingly collect personal information from anyone, including children under 13.
 
 Changes to This Privacy Policy
 ------------------------------
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the App Store and updating the "Last Updated" date at the top of this policy.
+We may update this Privacy Policy from time to time. When we do, we will post the new version on this page and update the "Last Updated" date at the top.
 
 Contact Us
 ----------
@@ -80,4 +75,4 @@ If you have any questions about this Privacy Policy, please contact us at:
 Your Rights
 -----------
 
-Since we do not collect or store any personal information, there is no personal data for you to access, modify, or delete. You maintain complete control over any data you create within the app on your local device.
+Analytics data is not linked to your identity, so we usually cannot pick out the records that belong to you. If you want your analytics data deleted, email us and we will do what we can. To stop any further collection, turn analytics off as described above. Your projects stay under your control, on your device and in your iCloud account.

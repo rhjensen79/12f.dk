@@ -273,6 +273,8 @@
 {{ define "main" }}
     {{ $sites := .Site.Data.web.sites }}
     {{ $apps := .Site.Data.apps.apps }}
+    {{ $live := 0 }}
+    {{ range $apps }}{{ if .appStoreUrl }}{{ $live = add $live 1 }}{{ end }}{{ end }}
     {{ $sectors := slice }}
     {{ $years := slice }}
     {{ range $sites }}
@@ -337,7 +339,7 @@
     </section>
 
     <a class="crossref reveal d4" href="/apps/" aria-label="See all {{ len $apps }} iOS apps by 12F ApS">
-      <span class="crossref-text">On the App Store, too — <b>{{ len $apps }} iOS apps</b> live, from renovation planning to trade photo reports. <b class="nowrap">See the apps&nbsp;&rsaquo;</b></span>
+      <span class="crossref-text">On the App Store, too — <b>{{ $live }} iOS apps</b> live, from renovation planning to trade photo reports. <b class="nowrap">See the apps&nbsp;&rsaquo;</b></span>
       <span class="crossref-icons" aria-hidden="true">
         {{ range first 8 $apps }}
         <img src="/images/apps/{{ .slug }}.png" alt="" width="30" height="30" loading="lazy" decoding="async">

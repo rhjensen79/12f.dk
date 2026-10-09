@@ -128,3 +128,14 @@ apps:
     landing: "https://rankmaster.12f.dk"
     support: "https://rankmaster.12f.dk/support.html"
     privacy: "https://rankmaster.12f.dk/privacy-policy.html"
+
+  # Pre-launch: no App Store id yet. The card shows "Coming soon" and the app is
+  # left out of the "apps live" counts until appStoreUrl is set. At launch, add
+  # appStoreId + appStoreUrl and delete comingSoon.
+  - slug: after-stories
+    name: "After Stories"
+    tagline: "Plan your group's trip, party or night out together — vote on the plan, share photos in one stream, wake up to the story."
+    category: "Social Networking"
+    comingSoon: true
+    landing: "https://after-stories.com"
+    privacy: "https://after-stories.com/privacy/"

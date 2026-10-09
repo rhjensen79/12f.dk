@@ -379,6 +379,8 @@
       <p class="lede reveal d4">An independent studio. We design and ship focused solutions that help businesses modernise — app&nbsp;by&nbsp;app.</p>
 
       {{ $apps := .Site.Data.apps.apps }}
+      {{ $live := 0 }}
+      {{ range $apps }}{{ if .appStoreUrl }}{{ $live = add $live 1 }}{{ end }}{{ end }}
       <a class="proof reveal d5" href="/apps/" aria-label="See all {{ len $apps }} apps by 12F ApS">
         <span class="proof-icons" aria-hidden="true">
           {{ range $apps }}
@@ -386,7 +388,7 @@
           {{ end }}
         </span>
         <span class="proof-label">
-          <b>{{ len $apps }} apps</b> live on the App Store
+          <b>{{ $live }} apps</b> live on the App Store
           <span class="arrow" aria-hidden="true">&rsaquo;</span>
         </span>
       </a>

@@ -19,7 +19,7 @@
           "description": {{ $a.tagline }},
           "applicationCategory": {{ $a.category }},
           "operatingSystem": "iOS",
-          "url": {{ $a.appStoreUrl }},
+          "url": {{ $a.appStoreUrl | default $a.landing }},
           "image": {{ printf "images/apps/%s.png" $a.slug | absURL }},
           "author": { "@type": "Organization", "name": "12F ApS" }
         }
@@ -159,6 +159,7 @@
     }
     .store svg { width: 13px; height: 13px; fill: currentColor; }
     .store:hover { color: #f5bb63; }
+    .store.soon { color: var(--paper-dim); cursor: default; }
     .store:focus-visible,
     .sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
 
@@ -207,15 +208,16 @@
 {{ define "main" }}
     {{ $apps := .Site.Data.apps.apps }}
     {{ $cats := slice }}
-    {{ range $apps }}{{ $cats = $cats | append .category }}{{ end }}
+    {{ $live := 0 }}
+    {{ range $apps }}{{ $cats = $cats | append .category }}{{ if .appStoreUrl }}{{ $live = add $live 1 }}{{ end }}{{ end }}
 
     <header class="apps-head">
       <p class="eyebrow reveal d2">12F ApS — Apps on the App Store</p>
       <h1 class="apps-title reveal d3">Everything we've <em>shipped</em><span class="dot">.</span></h1>
-      <p class="apps-lede reveal d4">Small, focused iOS apps — built to do one thing properly and keep your data on your device. Every app below is live on the App&nbsp;Store.</p>
+      <p class="apps-lede reveal d4">Small, focused iOS apps — built to do one thing properly and keep your data on your device. Every app below is live on the App&nbsp;Store{{ if lt $live (len $apps) }}, or coming soon{{ end }}.</p>
 
       <div class="tally reveal d4">
-        <div><b>{{ len $apps }}</b><span>Apps live</span></div>
+        <div><b>{{ $live }}</b><span>Apps live</span></div>
         <div><b>{{ len (uniq $cats) }}</b><span>Categories</span></div>
         <div><b>iOS</b><span>iPhone &amp; iPad</span></div>
       </div>
@@ -235,10 +237,14 @@
         <p>{{ .tagline }}</p>
 
         <div class="card-links">
+          {{ if .appStoreUrl }}
           <a class="store" href="{{ .appStoreUrl }}" target="_blank" rel="noopener">
             <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             App Store
           </a>
+          {{ else if .comingSoon }}
+          <span class="store soon">Coming soon</span>
+          {{ end }}
           {{ with .landing }}<a class="sub" href="{{ . }}" target="_blank" rel="noopener">Website</a>{{ end }}
           {{ if .tool }}<a class="sub tool" href="{{ .tool }}" target="_blank" rel="noopener">{{ .toolLabel | default "Free tool" }}</a>{{ end }}
           {{ with .privacy }}<a class="sub" href="{{ . }}">Privacy</a>{{ end }}

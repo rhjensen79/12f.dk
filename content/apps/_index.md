@@ -1,7 +1,7 @@
 ---
 title: "Apps"
 description: "Every iOS app built by 12F ApS — 14 focused, privacy-first apps live on the App Store, from renovation and travel planning to job photo reports and flashcards."
-date: 2026-07-14T12:00:00+02:00
+date: 2026-10-09T00:00:00+02:00
 draft: false
 faq:
   - question: "What does 12F ApS do?"

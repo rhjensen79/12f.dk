@@ -132,6 +132,7 @@ apps:
   # Pre-launch: no App Store id yet. The card shows "Coming soon" and the app is
   # left out of the "apps live" counts until appStoreUrl is set. At launch, add
   # appStoreId + appStoreUrl and delete comingSoon.
+  # Placeholder icon (social profile icon) until the App Store icon ships.
   - slug: after-stories
     name: "After Stories"
     tagline: "Plan your group's trip, party or night out together — vote on the plan, share photos in one stream, wake up to the story."

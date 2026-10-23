@@ -5,7 +5,7 @@ layout: redirect
 redirect: "https://rankmaster.12f.dk/"
 # Kept out of listings and the sitemap: this is a signpost, not a page. The URL
 # itself has to stay — see the note in support.md.
-_build:
+build:
   list: never
   render: always
 ---

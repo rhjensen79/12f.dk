@@ -8,7 +8,7 @@ redirect: "https://rankmaster.12f.dk/support.html"
 # App Store Connect refuses the field outright (12fdk/rankmaster-ios#207).
 # Until a version ships carrying the new URL, this stub is what keeps the
 # store's support link working.
-_build:
+build:
   list: never
   render: always
 ---

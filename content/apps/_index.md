@@ -5,7 +5,7 @@ date: 2026-10-09T00:00:00+02:00
 draft: false
 faq:
   - question: "What does 12F ApS do?"
-    answer: "12F ApS is an independent Danish digital studio (CVR 45362957) that designs and ships focused iOS apps. It currently has 14 apps live on the App Store, covering renovation planning, travel, pet care, fitness tracking, trade photo reports, finance and education."
+    answer: "12F ApS is an independent Danish digital studio (CVR 45362957) that designs and ships focused iOS apps. It currently has 15 apps live on the App Store, covering renovation planning, group event planning, travel, pet care, fitness tracking, trade photo reports, finance and education."
   - question: "Who is behind 12F ApS?"
     answer: "12F ApS is run by Robert Jensen, an independent developer based in Denmark. Every app is designed, built and supported in-house, and you can reach him directly at robert@12f.dk."
   - question: "Are 12F apps privacy-first?"

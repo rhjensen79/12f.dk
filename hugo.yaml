@@ -52,7 +52,7 @@ params:
     url: "https://www.12f.dk"
     logo: "https://www.12f.dk/images/12F-new.svg"
     contactPoint:
-      telephone: ""
+      telephone: "+45 32 33 13 26"
       contactType: "customer service"
       email: "robert@12f.dk"
     address:

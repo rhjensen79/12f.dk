@@ -39,7 +39,7 @@
     "url": "{{ .Site.Params.organization.url }}",
     "logo": "{{ .Site.Params.organization.logo }}",
     "description": "{{ .Site.Params.description }}",
-    "contactPoint": { "@type": "ContactPoint", "email": "{{ .Site.Params.organization.contactPoint.email }}", "contactType": "{{ .Site.Params.organization.contactPoint.contactType }}" },
+    "contactPoint": { "@type": "ContactPoint", "telephone": "{{ .Site.Params.organization.contactPoint.telephone }}", "email": "{{ .Site.Params.organization.contactPoint.email }}", "contactType": "{{ .Site.Params.organization.contactPoint.contactType }}" },
     "address": { "@type": "PostalAddress", "addressCountry": "{{ .Site.Params.organization.address.addressCountry }}" },
     "areaServed": "DK",
     "foundingDate": "2024",
@@ -416,6 +416,9 @@
         </a>
         <a class="link" href="mailto:robert@12f.dk">
           <span class="arrow" aria-hidden="true">&rsaquo;</span> robert@12f.dk
+        </a>
+        <a class="link" href="tel:+4532331326">
+          <span class="arrow" aria-hidden="true">&rsaquo;</span> +45&nbsp;32&nbsp;33&nbsp;13&nbsp;26
         </a>
       </nav>
     </section>
